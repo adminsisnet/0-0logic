@@ -1,0 +1,83 @@
+# Sisnet.us - Secure Deployment & Provenance Script
+# Target Location: F:\AI\Loghic0-0
+
+$targetPath = "F:\AI\Loghic0-0"
+$releaseNotesPath = Join-Path $targetPath "RELEASE_NOTES.md"
+$remoteUrl = "https://github.com/Sisnet-us/0-0.git"
+$gpgKeyId = "3F1EC3110F36B433" 
+$branchName = "feature/add-diagnostic-20260120"
+
+# 1. Ensure the directory exists
+if (!(Test-Path $targetPath)) {
+    New-Item -ItemType Directory -Path $targetPath | Out-Null
+    Write-Host "Created directory: $targetPath" -ForegroundColor Cyan
+}
+
+Set-Location $targetPath
+
+# 2. Generate the RELEASE_NOTES.md file
+$releaseNotesContent = @'
+---
+title: Sisnet.us Private Artifacts — Stable Release Notes
+version: 1.0.0-PROVENANCE
+date: 2026-01-29
+status: ENCRYPTED / RESTRICTED
+---
+
+## Summary
+These release notes accompany the private artifacts associated with the Sisnet.us infrastructure. These artifacts include proprietary logic, configuration templates, and cryptographic material necessary for the secure operation of the Loghic environment.
+
+## Security & Provenance
+- All core artifacts are encrypted and access-controlled. Any decryption or distribution requires documented authorization from Sisnet.us.
+- For independent timestamping and archival, we publish checksums and notarizations (Wayback / OpenTimestamps / Arweave) for released snapshots.
+
+## Contact & access requests
+To request authorized access, a distribution agreement, or additional provenance proofs, contact:
+Riley Salinger — riley@sisnet.us
+
+## Legal / Safety reminder
+By requesting access or using any private artifacts, you attest that you will comply with Sisnet.us policies, applicable laws, and ethical constraints. Any misuse of private artifacts that causes harm may result in revocation of access and legal consequences.
+
+--- END RELEASE NOTES ---
+'@
+
+$releaseNotesContent | Set-Content -Path $releaseNotesPath -Encoding UTF8
+Write-Host "Successfully generated RELEASE_NOTES.md at $releaseNotesPath" -ForegroundColor Green
+
+# 3. Initialize Git and Handle Origin
+if (!(Test-Path (Join-Path $targetPath ".git"))) {
+    git init
+    git remote add origin $remoteUrl
+    Write-Host "Initialized Git and added origin: $remoteUrl" -ForegroundColor Cyan
+} else {
+    git remote set-url origin $remoteUrl
+    Write-Host "Updated existing origin to: $remoteUrl" -ForegroundColor Cyan
+}
+
+# 4. Final Sign, Commit, and Push
+Write-Host "Creating branch and signing artifacts..." -ForegroundColor Yellow
+
+# Create and switch to the new branch (force create if it doesn't exist)
+git checkout -b $branchName 2>$null
+if ($LASTEXITCODE -ne 0) { 
+    git checkout $branchName 
+}
+
+# Add all files
+git add .
+
+# Perform signed commit - FIX: Using --gpg-sign properly
+Write-Host "Committing with GPG Key: $gpgKeyId" -ForegroundColor Cyan
+git commit -S$gpgKeyId -m "chore: deploy 0/0 sovereign logic artifacts and provenance notes"
+
+# Push to the remote
+if ($LASTEXITCODE -eq 0) {
+    Write-Host "Pushing to origin $branchName..." -ForegroundColor Cyan
+    git push -u origin $branchName
+} else {
+    Write-Host "Commit failed. Please check if your GPG key is available and unlocked." -ForegroundColor Red
+    exit
+}
+
+Write-Host "`nDeployment Complete!" -ForegroundColor White
+Write-Host "The branch $branchName has been signed and pushed to $remoteUrl." -ForegroundColor Green
