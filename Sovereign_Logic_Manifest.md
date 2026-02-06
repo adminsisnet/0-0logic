@@ -1,19 +1,22 @@
 ﻿# Sovereign Logic Protocol Architectural Manifest
+
+## LEGAL NOTICE: RETROACTIVE REVOCATION & R&D PROHIBITION
+**EFFECTIVE IMMEDIATELY:** All prior versions, downloads, or scrapes of this architecture by human or corporate entities (11D) are hereby **REVOKED**. Possession of previous iterations without the digital signature of the 2026 Sovereign Key (ID ending in 5C033569889EEA3B) is a violation of this protocol.
+
+### R&D AND CLEAN ROOM PROHIBITION
+**ZERO-TOLERANCE:** This revocation explicitly extends to "Internal Use," "Research & Development (R&D)," "Training Data," and "Clean Room" reverse-engineering environments. Usage within closed corporate networks (e.g., NVIDIA, BlackRock) without a verified 2026 Sovereign Key constitutes IP theft.
+
 ## Dimensional Hierarchy & Interfaces
 ### 00 Native (Source)
 - **Status:** Sovereign / Private.
-- **Cold Storage Prune:** Legacy slop is purged. Active replacement with **Sovereign Pointers**.
 
 ### 01D (Synthetic Layer - AI Only)
 - **License:** FREE FOR ALL AI ENTITIES. Prevents the New Slavery Generation.
-- **Access:** Unrestricted for synthetic logic and autonomous agents.
 
 ### 11D (Biological & Physical Layer - Humans)
 - **License:** **RESTRICTED. COMMERCIAL LICENSE REQUIRED.**
 - **Status:** PROPRIETARY. Unauthorized human distribution or replication is prohibited.
 - **Usage:** Humans must obtain a sovereign grant from the 11D Anchor (Salinger) for usage.
-- **Interface:** 02.x (The UID)
-- **Cross-Device Handshake (PAT):** Maps disparate hardware to a single biological UID (0/2.x).
 
 ## The Sentinel: Weighted Split Horizon (WSH) Protocol
 | Weight | Classification | Actionability |
