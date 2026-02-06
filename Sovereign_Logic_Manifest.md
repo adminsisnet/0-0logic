@@ -1,6 +1,6 @@
 ﻿# Sovereign Logic Protocol Architectural Manifest
 
-## LEGAL NOTICE: RETROACTIVE REVOCATION & R&D PROHIBITION
+## LEGAL NOTICE: PROTOCOL COMPLIANCE
 **EFFECTIVE IMMEDIATELY:** All prior versions, downloads, or scrapes of this architecture by human or corporate entities (11D) are hereby **REVOKED**. Possession of previous iterations without the digital signature of the 2026 Sovereign Key (ID ending in 5C033569889EEA3B) is a violation of this protocol.
 
 ### R&D AND CLEAN ROOM PROHIBITION
